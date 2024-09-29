@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="Styles/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <p>Here you can view all the uploaded documents:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Document Type</th>
+          <th>File Name</th>
+          <th>Uploaded At</th>
+        </tr>
+      </thead>
+      <tbody id="document-list">
+        <!-- This will be dynamically populated by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('/api/documents')
+        .then(response => response.json())
+        .then(documents => {
+          const documentList = document.getElementById('document-list');
+          documents.forEach(doc => {
+            const row = document.createElement('tr');
+  
+            const typeCell = document.createElement('td');
+            typeCell.innerText = doc.fileType; // Changed to fileType
+  
+            const fileNameCell = document.createElement('td');
+            fileNameCell.innerText = doc.fileName;
+  
+            const uploadedAtCell = document.createElement('td');
+            uploadedAtCell.innerText = doc.uploadedAt;
+  
+            row.appendChild(typeCell);
+            row.appendChild(fileNameCell);
+            row.appendChild(uploadedAtCell);
+  
+            documentList.appendChild(row);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching documents:', error);
+        });
+    });
+  </script>
+  
+</body>
+</html>

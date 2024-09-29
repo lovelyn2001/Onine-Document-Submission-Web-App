@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="Styles/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Document Submission System</h1>
+    <p>Please select your role:</p>
+    
+    <form id="role-form">
+      <div class="role-select">
+        <input type="radio" id="user" name="role" value="user" required>
+        <label for="user">User</label>
+      </div>
+      <div class="role-select">
+        <input type="radio" id="admin" name="role" value="admin" required>
+        <label for="admin">Admin</label>
+      </div>
+      <button type="submit">Proceed</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('role-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const selectedRole = document.querySelector('input[name="role"]:checked').value;
+
+      if (selectedRole === 'user') {
+        // Redirect to user index
+        window.location.href = 'user.html';
+      } else if (selectedRole === 'admin') {
+        // Redirect to admin login
+        window.location.href = 'admin-login.html';
+      }
+    });
+  </script>
+</body>
+</html>
