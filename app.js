@@ -7,6 +7,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 port = process.env.PORT || 4000;
+const session = require('express-session');
+const flash = require('connect-flash');
+
 
 // Initialize App
 const app = express();
@@ -15,6 +18,17 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
+// Express Session Middleware
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true
+}));
+
+// Connect Flash Middleware
+app.use(flash());
+
 
 // Create uploads folder if not exists
 const uploadDir = path.join(__dirname, 'uploads');
@@ -104,8 +118,9 @@ app.post('/student/login', async (req, res) => {
 app.get('/student/dashboard/:id', async (req, res) => {
     try {
         const student = await Student.findById(req.params.id);
+        const flashMessage = req.flash('message'); // Get flash message
         if (student) {
-            res.render('studentDashboard', { student });
+            res.render('studentDashboard', { student, flashMessage }); // Pass flash message to the view
         } else {
             res.send('Student not found');
         }
@@ -128,12 +143,14 @@ app.post('/student/upload/:id', upload.fields([
 ]), async (req, res) => {
     try {
         const studentId = req.params.id;
-        const uploadedFiles = Object.values(req.files).map(fileArray => fileArray[0].path);
+        const uploadedFiles = Object.values(req.files).flat().map(file => file.path); // Flatten and extract file paths
         await Student.findByIdAndUpdate(studentId, { $push: { documents: { $each: uploadedFiles } } }, { new: true });
+        req.flash('message', 'Files uploaded successfully!'); // Set success flash message
         res.redirect(`/student/dashboard/${studentId}`);
     } catch (err) {
         console.log(err);
-        res.send('Error uploading files');
+        req.flash('message', 'Error uploading files'); // Set error flash message
+        res.redirect(`/student/dashboard/${studentId}`);
     }
 });
 

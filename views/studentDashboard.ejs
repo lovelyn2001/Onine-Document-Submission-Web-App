@@ -8,6 +8,11 @@
 </head>
 <body>
     <div class="container">
+        <% if (flashMessage.length > 0) { %>
+            <div class="alert alert-success">
+                <%= flashMessage[0] %>
+            </div>
+        <% } %>
         <h1>Upload Your Documents</h1>
         <form action="/student/upload/<%= student._id %>" method="POST" enctype="multipart/form-data">
 

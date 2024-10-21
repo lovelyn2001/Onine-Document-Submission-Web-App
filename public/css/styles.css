@@ -74,6 +74,15 @@ button:hover {
     background-color: #1e7e34;
 }
 
+.alert {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+}
+
+
 
 .dashboard-container {
     display: flex;
