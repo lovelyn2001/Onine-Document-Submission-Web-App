@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+port = process.env.PORT || 4000;
 
 // Initialize App
 const app = express();
@@ -186,6 +187,6 @@ app.get('/download/:filename', (req, res) => {
 
 
 // Start Server
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
-});
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })
