@@ -1,0 +1,122 @@
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #28a745, #f1c40f);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin: 0;
+}
+
+/* Container for Centering Content */
+.container, .dashboard-container {
+    max-width: 900px;
+    margin: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Heading Styles */
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+/* Form Label */
+label {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Form Fields */
+input[type="file"],
+input[type="text"],
+input[type="password"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+}
+
+input[type="file"] {
+    background-color: #fff;
+    color: #333;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #1e7e34;
+}
+
+
+.dashboard-container {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    width: 100%;
+    scroll-behavior: smooth;
+}
+
+.file-upload {
+    min-width: 300px; /* Set a minimum width for each upload section */
+    margin-right: 20px; /* Space between sections */
+}
+
+.file-upload:last-child {
+    margin-right: 0; /* Remove margin for the last section */
+}
+
+/* Add custom styling as needed */
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container, .dashboard-container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Links */
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Input Focus Styling */
+input:focus {
+    outline: none;
+    border: 2px solid #f1c40f;
+}

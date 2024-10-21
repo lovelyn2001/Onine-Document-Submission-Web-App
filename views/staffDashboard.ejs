@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+    <h1>Student Submissions</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Reg Number</th>
+                <th>Department</th>
+                <th>JAMB Reg Number</th>
+                <th>Documents</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% students.forEach(student => { %>
+                <tr>
+                    <td><%= student.name %></td>
+                    <td><%= student.regnumber %></td>
+                    <td><%= student.department %></td>
+                    <td><%= student.jambregnumber %></td>
+                    <td>
+                        <% student.documents.forEach(doc => { %>
+                            <a href="/download/<%= doc %>">Download</a><br>
+                        <% }) %>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    
+    <a href="/">Back to Home</a>
+</div>
+</body>
+</html>
