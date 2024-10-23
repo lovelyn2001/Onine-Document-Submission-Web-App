@@ -143,6 +143,7 @@ app.post('/student/upload/:id', upload.fields([
 ]), async (req, res) => {
     try {
         const studentId = req.params.id;
+        console.log(studentId);
         const uploadedFiles = Object.values(req.files).flat().map(file => file.path); // Flatten and extract file paths
         await Student.findByIdAndUpdate(studentId, { $push: { documents: { $each: uploadedFiles } } }, { new: true });
         req.flash('message', 'Files uploaded successfully!'); // Set success flash message
