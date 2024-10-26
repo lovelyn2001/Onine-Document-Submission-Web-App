@@ -1,14 +1,14 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const multer = require('multer');
-const bcrypt = require('bcryptjs');
-const fs = require('fs');
-const path = require('path');
-const bodyParser = require('body-parser');
-require('dotenv').config();
-port = process.env.PORT || 4000;
-const session = require('express-session');
-const flash = require('connect-flash');
+const express = require('express'); //framework that enables us work with node.js
+const mongoose = require('mongoose'); // framework of mongodb that enables use of mongodb on the website
+const multer = require('multer'); // allows for upload of files to the database
+const bcrypt = require('bcryptjs'); // js package usef for encrypting passwords
+const fs = require('fs'); // helps us in file and text manipulation
+const path = require('path'); 
+const bodyParser = require('body-parser'); // reads input from the frontend (middleware)
+require('dotenv').config(); // a package that hides sensitive information
+port = process.env.PORT || 4000; 
+const session = require('express-session'); // saves user ID
+const flash = require('connect-flash'); // prompts a pop-up message onto the screen
 
 
 // Initialize App
